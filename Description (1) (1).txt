@@ -1,0 +1,40 @@
+**Introduction:**
+Hand gesture recognition is a key technology in Human-Computer Interaction (HCI) that allows computers to understand and interpret human hand gestures as commands.
+This project aims to implement a Convolutional Neural Network (CNN) for recognizing static hand gestures using image data. The system is also capable of performing real-time gesture prediction through a webcam.
+
+**Dataset:**
+The dataset used in this project is the LeapGestRecog dataset, which contains thousands of grayscale hand gesture images, each representing a specific gesture.
+The dataset is structured in folders, each corresponding to a class label. Images are resized to 64×64 pixels to ensure uniform input to the CNN and efficient processing.
+To ensure reliable training and evaluation, the dataset is split into:
+Training Set (80%) – used to train the CNN model, Validation Set (20%) – used to evaluate the model's generalization during training.
+
+**Image Processing:**
+Before feeding into the model, each image undergoes:
+Resizing to 64×64 resolution, Normalization (pixel values scaled between 0 and 1), Automatic label extraction from directory structure using image_dataset_from_directory.
+
+**CNN Model Architecture:**
+The model is built using TensorFlow and Keras libraries. The architecture consists of the following layers:
+Convolutional Layers: Extract spatial features from the input image using filters.
+Max Pooling Layers: Reduce the spatial dimensions while retaining key features.
+Flatten Layer: Converts 2D feature maps into a 1D vector.
+Dense Layer: Fully connected layer to learn complex representations.
+Dropout Layer: Reduces overfitting by randomly disabling neurons during training.
+Output Layer: A softmax-activated dense layer that outputs a probability distribution over gesture classes.
+The model uses the Adam optimizer and is trained with the sparse categorical crossentropy loss function, suitable for multi-class classification problems with integer labels.
+
+**Model Evaluation:**
+After training, the model is evaluated using:
+Classification Report: Includes precision, recall, and F1-score for each gesture class, Confusion Matrix: Visual representation of model predictions vs. true labels, showing class-wise accuracy.
+These evaluations help in identifying which gestures the model recognizes well and where it may need improvement.
+
+**Real-Time Gesture Prediction:**
+The project includes a real-time gesture recognition system using OpenCV:
+Captures live video feed from the webcam.
+Extracts and preprocesses each frame.
+Predicts the gesture class using the trained CNN model.
+Displays the predicted gesture name, confidence level, and optionally overlays a reference image of the gesture on the video frame.
+Allows users to exit the camera by pressing the q key.
+
+**Applications:**
+This hand gesture recognition system can be applied in various domains, such as:
+Gesture-based control systems, Sign language interpretation, Touchless interfaces in AR/VR, Gaming and entertainment interfaces, Robotics and automation control.
